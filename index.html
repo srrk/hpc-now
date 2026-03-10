@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>hpc.now</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Inter, sans-serif;
+background:#fbfbfb;
+color:#111827;
+line-height:1.7;
+}
+
+/* LAYOUT */
+
+.container{
+max-width:760px;
+margin:auto;
+padding:0 28px;
+}
+
+section{
+padding:80px 0;
+}
+
+.hero{
+padding:110px 0 90px;
+}
+
+section + section{
+margin-top:0;
+}
+
+/* NAV */
+
+nav{
+padding:28px 0;
+font-family:"JetBrains Mono", monospace;
+font-size:12px;
+letter-spacing:.06em;
+}
+
+.logo{
+text-decoration:none;
+color:#111827;
+}
+
+.logo span{
+color:#2563eb;
+}
+
+/* HERO */
+
+.hero-label{
+font-family:"JetBrains Mono", monospace;
+font-size:11px;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#6b7280;
+margin-bottom:28px;
+opacity:0;
+animation:riseFade .6s ease forwards;
+}
+
+.hero h1{
+font-family:"IBM Plex Sans", sans-serif;
+font-size:56px;
+line-height:1.15;
+font-weight:600;
+letter-spacing:-0.02em;
+margin-bottom:28px;
+opacity:0;
+animation:riseFade .8s ease .15s forwards;
+}
+
+.hero em{
+color:#2563eb;
+font-style:normal;
+}
+
+.hero p{
+color:#6b7280;
+font-size:18px;
+max-width:520px;
+margin-top:12px;
+opacity:0;
+animation:riseFade .8s ease .35s forwards;
+}
+
+/* SECTION LABEL */
+
+.label{
+font-family:"JetBrains Mono";
+font-size:11px;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#6b7280;
+margin-bottom:40px;
+}
+
+
+
+/* PRINCIPLES */
+
+.principles{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:32px;
+margin-bottom:56px;
+}
+
+.card{
+border:1px solid #d1d5db;
+border-radius:10px;
+padding:32px;
+background:white;
+transition:all .2s ease;
+}
+
+.card:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+border-color:#cbd5e1;
+}
+
+.card h3{
+font-family:"IBM Plex Sans";
+font-size:22px;
+margin-bottom:14px;
+}
+
+.card p{
+color:#6b7280;
+font-size:15px;
+line-height:1.6;
+}
+
+/* VISION */
+
+.vision{
+font-size:18px;
+max-width:640px;
+}
+
+.vision p{
+margin-bottom:22px;
+}
+
+.vision em{
+color:#2563eb;
+font-style:normal;
+}
+
+/* COURSE */
+
+.course-title{
+font-family:"IBM Plex Sans";
+font-size:32px;
+font-weight:600;
+margin:12px 0 22px;
+}
+
+.course p{
+margin-bottom:18px;
+color:#374151;
+}
+
+.layers{
+font-family:"JetBrains Mono";
+margin:22px 0;
+line-height:1.8;
+}
+
+.cta{
+display:inline-block;
+margin-top:28px;
+border:1px solid #111827;
+padding:12px 18px;
+border-radius:6px;
+text-decoration:none;
+color:#111827;
+font-family:"JetBrains Mono";
+font-size:13px;
+transition:.2s;
+}
+
+.cta:hover{
+background:#111827;
+color:#fff;
+}
+
+/* PERSON */
+
+.person{
+text-align:center;
+max-width:620px;
+margin:auto;
+}
+
+.person img{
+width:96px;
+height:96px;
+border-radius:50%;
+object-fit:cover;
+object-position:center;
+margin-bottom:20px;
+}
+
+.person h3{
+font-family:"IBM Plex Sans";
+font-size:24px;
+margin-bottom:6px;
+}
+
+.person small{
+color:#6b7280;
+display:block;
+margin-bottom:24px;
+}
+
+.person p{
+margin-bottom:16px;
+color:#374151;
+}
+
+.timeline{
+font-family:"JetBrains Mono";
+font-size:13px;
+color:#6b7280;
+margin-top:20px;
+}
+
+/* FOOTER */
+
+footer{
+border-top:1px solid #e5e7eb;
+padding:40px 0;
+margin-top:80px;
+font-family:"JetBrains Mono";
+font-size:12px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:16px;
+}
+
+footer a{
+text-decoration:none;
+color:#111827;
+}
+
+/* ANIMATION */
+
+@keyframes riseFade{
+from{
+opacity:0;
+transform:translateY(12px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* RESPONSIVE */
+
+@media (max-width:760px){
+
+.hero h1{
+font-size:40px;
+}
+
+.principles{
+grid-template-columns:1fr;
+}
+
+section{
+padding:80px 0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="container">
+<a class="logo" href="/">hpc<span>.now</span></a>
+</nav>
+
+<header class="hero container">
+
+<div class="hero-label">
+Infrastructure Philosophy
+</div>
+
+<h1>
+HPC operations should be<br>
+accessible,<br>
+predictable,<br>
+and eventually <em>boring</em>.
+</h1>
+
+<p>
+Independent infrastructure knowledge.<br>
+Built by practitioners.
+</p>
+
+</header>
+
+
+<section class="container">
+
+<div class="label">Principles</div>
+
+<div class="principles">
+
+<div class="card">
+<h3>Accessible</h3>
+<p>HPC knowledge should not live only inside research labs or vendor ecosystems.</p>
+</div>
+
+<div class="card">
+<h3>Predictable</h3>
+<p>Clusters should behave like systems engineers understand and can diagnose.</p>
+</div>
+
+<div class="card">
+<h3>Boring</h3>
+<p>When infrastructure is well understood, operations become routine.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="label">Vision</div>
+
+<div class="vision">
+
+<p>
+High-performance computing has spent decades solving problems that the rest of infrastructure is only now beginning to encounter.
+</p>
+
+<p>
+Schedulers managing thousands of jobs. Parallel filesystems moving petabytes of data. High-speed networks coordinating tightly coupled workloads.
+</p>
+
+<p>
+The knowledge required to operate these systems exists — but it rarely travels well.
+</p>
+
+<p>
+It lives inside research labs, internal teams, mailing list archives, and the instincts of engineers who solved the last outage.
+</p>
+
+<p>
+When those engineers move on, the knowledge often moves with them.
+</p>
+
+<p>
+hpc.now exists to change that.
+</p>
+
+<p>
+<em>Independent. Practitioner-built. For the long run.</em>
+</p>
+
+</div>
+
+</section>
+
+
+<section class="container course">
+
+<div class="label">First Artifact</div>
+
+<div class="course-title">
+HPC Infrastructure Operations for Senior Engineers
+</div>
+
+<p>
+Ten hands-on modules for engineers who already understand datacenter infrastructure and want to learn how HPC clusters operate.
+</p>
+
+<div class="layers">
+Schedulers<br>
+Parallel storage<br>
+High-speed networking<br>
+Cluster observability
+</div>
+
+<p>
+No beginner material. Every lab runs on a live cluster.
+</p>
+
+<a class="cta" href="https://master.hpc.now">
+See the pilot course →
+</a>
+
+</section>
+
+
+<section class="container person">
+
+<div class="label">The Person</div>
+
+<img src="rajesh.jpg" alt="Rajesh Kumar">
+
+<h3>Rajesh Kumar</h3>
+
+<small>
+HPC Infrastructure Architect · 16+ years · Bengaluru
+</small>
+
+<p>
+Rajesh has spent sixteen years watching the same pattern repeat.
+</p>
+
+<p>
+Infrastructure fails not because engineers lack intelligence, but because operational knowledge rarely reaches them in time.
+</p>
+
+<p>
+hpc.now is his attempt to make that less necessary.
+</p>
+
+<div class="timeline">
+IISc — C-DAC Pune — GE — Boeing — Trianz
+</div>
+
+</section>
+
+
+<footer class="container">
+
+<div>
+hpc.now · Bengaluru · 2026
+</div>
+
+<div>
+<a href="https://master.hpc.now">pilot course →</a>
+&nbsp;&nbsp;
+<a href="mailto:rajesh@hpc.now">rajesh@hpc.now</a>
+</div>
+
+</footer>
+
+</body>
+</html>
