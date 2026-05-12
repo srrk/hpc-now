@@ -1,472 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>hpc.now</title>
-
+<title>hpc.now — HPC infrastructure knowledge, built in the open</title>
+<meta name="description" content="A practitioner-built ecosystem for HPC infrastructure engineers — training, resources, and research access. One domain, growing deliberately.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
-/* RESET */
+:root {
+  --graphite:    #111111;
+  --graphite-mid:#1A1A1A;
+  --amber:       #D97706;
+  --amber-light: #F59E0B;
+  --amber-pale:  #FEF3C7;
+  --amber-faint: #FFFBEB;
+  --page-bg:     #FAFAF9;
+  --card-bg:     #FFFFFF;
+  --text-primary:#1A1A1A;
+  --text-secondary:#525252;
+  --text-muted:  #737373;
+  --border:      #E5E5E5;
+  --border-strong:#D4D4D4;
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  --font-display:'Fraunces', Georgia, serif;
+  --font-body:   'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:   'DM Mono', monospace;
+
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --max-w:       960px;
 }
 
-body{
-font-family:Inter, sans-serif;
-background:#fbfbfb;
-color:#111827;
-line-height:1.7;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--page-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* LAYOUT */
-
-.container{
-max-width:760px;
-margin:auto;
-padding:0 28px;
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-section{
-padding:80px 0;
+/* ── NAV ── */
+nav {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--page-bg);
 }
 
-.hero{
-padding:110px 0 90px;
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-section + section{
-margin-top:0;
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--graphite);
+  text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
-/* NAV */
+.nav-logo span { color: var(--amber); }
 
-nav{
-padding:28px 0;
-font-family:"JetBrains Mono", monospace;
-font-size:12px;
-letter-spacing:.06em;
+.nav-contact {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.logo{
-text-decoration:none;
-color:#111827;
+.nav-contact:hover { color: var(--amber); }
+
+/* ── HERO ── */
+#hero {
+  padding: 96px 0 80px;
+  background: var(--page-bg);
+  border-bottom: 1px solid var(--border);
 }
 
-.logo span{
-color:#2563eb;
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
 }
 
-/* HERO */
-
-.hero-label{
-font-family:"JetBrains Mono", monospace;
-font-size:11px;
-letter-spacing:.22em;
-text-transform:uppercase;
-color:#6b7280;
-margin-bottom:28px;
-opacity:0;
-animation:riseFade .6s ease forwards;
+.hero-hl {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  color: var(--graphite);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
 }
 
-.hero h1{
-font-family:"IBM Plex Sans", sans-serif;
-font-size:56px;
-line-height:1.15;
-font-weight:600;
-letter-spacing:-0.02em;
-margin-bottom:28px;
-opacity:0;
-animation:riseFade .8s ease .15s forwards;
+.hero-hl em {
+  font-style: normal;
+  color: var(--amber);
 }
 
-.hero em{
-color:#2563eb;
-font-style:normal;
+.hero-sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
 }
 
-.hero p{
-color:#6b7280;
-font-size:18px;
-max-width:520px;
-margin-top:12px;
-opacity:0;
-animation:riseFade .8s ease .35s forwards;
+/* ── ECOSYSTEM GRID ── */
+#ecosystem {
+  padding: 80px 0;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
 }
 
-/* SECTION LABEL */
-
-.label{
-font-family:"JetBrains Mono";
-font-size:11px;
-letter-spacing:.22em;
-text-transform:uppercase;
-color:#6b7280;
-margin-bottom:40px;
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
 }
 
-
-
-/* PRINCIPLES */
-
-.principles{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:32px;
-margin-bottom:56px;
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.card{
-border:1px solid #d1d5db;
-border-radius:10px;
-padding:32px;
-background:white;
-transition:all .2s ease;
+.eco-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  background: var(--page-bg);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
-.card:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 22px rgba(0,0,0,0.06);
-border-color:#cbd5e1;
+.eco-card.live {
+  border-color: var(--amber);
+  background: var(--card-bg);
+  cursor: pointer;
 }
 
-.card h3{
-font-family:"IBM Plex Sans";
-font-size:22px;
-margin-bottom:14px;
+.eco-card.live:hover {
+  border-color: var(--amber-light);
+  box-shadow: 0 6px 28px rgba(217,119,6,0.12);
+  transform: translateY(-2px);
 }
 
-.card p{
-color:#6b7280;
-font-size:15px;
-line-height:1.6;
+.eco-card.soon {
+  opacity: 0.65;
 }
 
-/* VISION */
-
-.vision{
-font-size:18px;
-max-width:640px;
+.eco-card.soon::after {
+  content: 'Coming soon';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  background: var(--border);
+  padding: 2px 8px;
+  border-radius: 20px;
 }
 
-.vision p{
-margin-bottom:22px;
+.eco-domain {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--amber);
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
-.vision em{
-color:#2563eb;
-font-style:normal;
+.eco-card.soon .eco-domain {
+  color: var(--text-muted);
 }
 
-/* COURSE */
-
-.course-title{
-font-family:"IBM Plex Sans";
-font-size:32px;
-font-weight:600;
-margin:12px 0 22px;
+.eco-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-family: var(--font-body);
 }
 
-.course p{
-margin-bottom:18px;
-color:#374151;
+.eco-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 1.25rem;
 }
 
-.layers{
-font-family:"JetBrains Mono";
-margin:22px 0;
-line-height:1.8;
+.eco-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--amber);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
 }
 
-.cta{
-display:inline-block;
-margin-top:28px;
-border:1px solid #111827;
-padding:12px 18px;
-border-radius:6px;
-text-decoration:none;
-color:#111827;
-font-family:"JetBrains Mono";
-font-size:13px;
-transition:.2s;
+.eco-link:hover { color: var(--amber-light); }
+
+/* ── PHILOSOPHY ── */
+#philosophy {
+  padding: 80px 0;
+  background: var(--page-bg);
+  border-bottom: 1px solid var(--border);
 }
 
-.cta:hover{
-background:#111827;
-color:#fff;
+.philosophy-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 700px;
 }
 
-/* PERSON */
-
-.person{
-text-align:center;
-max-width:620px;
-margin:auto;
+.philosophy-line {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
 }
 
-.person img{
-width:96px;
-height:96px;
-border-radius:50%;
-object-fit:cover;
-object-position:center;
-margin-bottom:20px;
+.philosophy-line:last-child { border-bottom: none; }
+
+.philosophy-line::before {
+  content: counter(line);
+  counter-increment: line;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--amber);
+  flex-shrink: 0;
+  width: 16px;
 }
 
-.person h3{
-font-family:"IBM Plex Sans";
-font-size:24px;
-margin-bottom:6px;
+.philosophy-lines { counter-reset: line; }
+
+/* ── PERSON ── */
+#person {
+  padding: 80px 0;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
 }
 
-.person small{
-color:#6b7280;
-display:block;
-margin-bottom:24px;
+.person-inner {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 700px;
 }
 
-.person p{
-margin-bottom:16px;
-color:#374151;
+.person-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--border);
+  display: block;
 }
 
-.timeline{
-font-family:"JetBrains Mono";
-font-size:13px;
-color:#6b7280;
-margin-top:20px;
+.person-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 4px;
 }
 
-/* FOOTER */
-
-footer{
-border-top:1px solid #e5e7eb;
-padding:40px 0;
-margin-top:80px;
-font-family:"JetBrains Mono";
-font-size:12px;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:16px;
+.person-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
 }
 
-footer a{
-text-decoration:none;
-color:#111827;
+.person-bio {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
 }
 
-/* ANIMATION */
-
-@keyframes riseFade{
-from{
-opacity:0;
-transform:translateY(12px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.person-timeline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
 }
 
-/* RESPONSIVE */
-
-@media (max-width:760px){
-
-.hero h1{
-font-size:40px;
+.person-linkedin {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.principles{
-grid-template-columns:1fr;
+.person-linkedin:hover { color: var(--amber-light); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  background: var(--graphite);
 }
 
-section{
-padding:80px 0;
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
+.footer-logo {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-logo span { color: var(--amber); }
+
+.footer-info {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-info a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-info a:hover { color: var(--amber); }
+
+.footer-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  .ecosystem-grid { grid-template-columns: 1fr; }
+  .person-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  #hero { padding: 64px 0 56px; }
+  .footer-info { flex-direction: column; gap: 0.5rem; }
 }
 
 </style>
-
 </head>
-
 <body>
 
-<nav class="container">
-<a class="logo" href="/">hpc<span>.now</span></a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">hpc<span>.now</span></a>
+    <a href="mailto:rajesh@hpc.now" class="nav-contact">rajesh@hpc.now</a>
+  </div>
 </nav>
 
-<header class="hero container">
-
-<div class="hero-label">
-Infrastructure Philosophy
-</div>
-
-<h1>
-HPC operations should be<br>
-accessible,<br>
-predictable,<br>
-and eventually <em>boring</em>.
-</h1>
-
-<p>
-Independent infrastructure knowledge.<br>
-Built by practitioners.
-</p>
-
-</header>
-
-
-<section class="container">
-
-<div class="label">Principles</div>
-
-<div class="principles">
-
-<div class="card">
-<h3>Accessible</h3>
-<p>HPC knowledge should not live only inside research labs or vendor ecosystems.</p>
-</div>
-
-<div class="card">
-<h3>Predictable</h3>
-<p>Clusters should behave like systems engineers understand and can diagnose.</p>
-</div>
-
-<div class="card">
-<h3>Boring</h3>
-<p>When infrastructure is well understood, operations become routine.</p>
-</div>
-
-</div>
-
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Practitioner-built · Open</p>
+    <h1 class="hero-hl">HPC infrastructure knowledge, <em>built in the open.</em></h1>
+    <p class="hero-sub">A practitioner-built ecosystem for HPC infrastructure engineers — training, resources, and research access. One domain, growing deliberately.</p>
+  </div>
 </section>
 
+<!-- ECOSYSTEM -->
+<section id="ecosystem">
+  <div class="container">
+    <p class="section-label">The ecosystem</p>
+    <div class="ecosystem-grid">
 
-<section class="container">
+      <div class="eco-card live" onclick="window.location='https://master.hpc.now'">
+        <div class="eco-domain">master.hpc.now</div>
+        <div class="eco-name">Training</div>
+        <div class="eco-desc">Professional HPC infrastructure training — four courses from first principles to production ownership. Instructor-led, real clusters, no vendor lock-in.</div>
+        <a href="https://master.hpc.now" class="eco-link" onclick="event.stopPropagation()">Go to programme →</a>
+      </div>
 
-<div class="label">Vision</div>
+      <div class="eco-card soon">
+        <div class="eco-domain">learn.hpc.now</div>
+        <div class="eco-name">Learning index</div>
+        <div class="eco-desc">Curated index of HPC learning resources from across the web — papers, conference talks, documentation, tools, and reference material. Practitioner-filtered.</div>
+      </div>
 
-<div class="vision">
+      <div class="eco-card soon">
+        <div class="eco-domain">reach.hpc.now</div>
+        <div class="eco-name">Academic outreach</div>
+        <div class="eco-desc">HPC infrastructure access and mentorship for academic researchers and institutions who need production-grade compute without production-grade budgets.</div>
+      </div>
 
-<p>
-High-performance computing has spent decades solving problems that the rest of infrastructure is only now beginning to encounter.
-</p>
-
-<p>
-Schedulers managing thousands of jobs. Parallel filesystems moving petabytes of data. High-speed networks coordinating tightly coupled workloads.
-</p>
-
-<p>
-The knowledge required to operate these systems exists — but it rarely travels well.
-</p>
-
-<p>
-It lives inside research labs, internal teams, mailing list archives, and the instincts of engineers who solved the last outage.
-</p>
-
-<p>
-When those engineers move on, the knowledge often moves with them.
-</p>
-
-<p>
-hpc.now exists to change that.
-</p>
-
-<p>
-<em>Independent. Practitioner-built. For the long run.</em>
-</p>
-
-</div>
-
+    </div>
+  </div>
 </section>
 
-
-<section class="container course">
-
-<div class="label">First Artifact</div>
-
-<div class="course-title">
-HPC Infrastructure Operations for Senior Engineers
-</div>
-
-<p>
-Ten hands-on modules for engineers who already understand datacenter infrastructure and want to learn how HPC clusters operate.
-</p>
-
-<div class="layers">
-Schedulers<br>
-Parallel storage<br>
-High-speed networking<br>
-Cluster observability
-</div>
-
-<p>
-No beginner material. Every lab runs on a live cluster.
-</p>
-
-<a class="cta" href="https://master.hpc.now">
-See the pilot course →
-</a>
-
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container">
+    <p class="section-label">Why this exists</p>
+    <div class="philosophy-lines">
+      <div class="philosophy-line">HPC knowledge should not live only inside vendor ecosystems and research labs — it belongs to the engineers who operate the infrastructure.</div>
+      <div class="philosophy-line">Infrastructure that is well understood becomes infrastructure that behaves. The gap between the two is almost always a knowledge problem, not a hardware problem.</div>
+      <div class="philosophy-line">Practitioner-built means built by someone who has operated what they teach — not surveyed it, not consulted on it, but run it in production under pressure.</div>
+    </div>
+  </div>
 </section>
 
-
-<section class="container person">
-
-<div class="label">The Person</div>
-
-<img src="rajesh.jpg" alt="Rajesh Kumar">
-
-<h3>Rajesh Kumar</h3>
-
-<small>
-HPC Infrastructure Architect · 16+ years · Bengaluru
-</small>
-
-<p>
-Rajesh has spent sixteen years watching the same pattern repeat.
-</p>
-
-<p>
-Infrastructure fails not because engineers lack intelligence, but because operational knowledge rarely reaches them in time.
-</p>
-
-<p>
-hpc.now is his attempt to make that less necessary.
-</p>
-
-<div class="timeline">
-IISc — C-DAC Pune — GE — Boeing
-</div>
-
+<!-- PERSON -->
+<section id="person">
+  <div class="container">
+    <p class="section-label">The person behind it</p>
+    <div class="person-inner">
+      <div>
+        <img src="images/rajesh.jpg" alt="Rajesh Kumar" class="person-photo">
+      </div>
+      <div>
+        <div class="person-name">Rajesh Kumar</div>
+        <div class="person-title">HPC Architect · 16+ years · Bengaluru</div>
+        <p class="person-bio">Sixteen years of HPC infrastructure across research computing, life sciences, aerospace, and cloud. hpc.now is the platform he wished existed when he started — independent, practitioner-built, and built for the long run.</p>
+        <div class="person-timeline">IISc → C-DAC → GE → Boeing → Trianz</div>
+        <a href="https://www.linkedin.com/in/srrajeshkumar/" target="_blank" rel="noopener" class="person-linkedin">↗ LinkedIn</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<footer class="container">
-
-<div>
-hpc.now · Bengaluru · 2026
-</div>
-
-<div>
-<a href="https://master.hpc.now">pilot course →</a>
-&nbsp;&nbsp;
-<a href="mailto:rajesh@hpc.now">rajesh@hpc.now</a>
-</div>
-
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="/" class="footer-logo">hpc<span>.now</span></a>
+      <div class="footer-info">
+        <span>Bengaluru · 2026</span>
+        <a href="mailto:rajesh@hpc.now">rajesh@hpc.now</a>
+        <a href="https://master.hpc.now">master.hpc.now →</a>
+      </div>
+      <div class="footer-note">No tracking. No ads. No nonsense.</div>
+    </div>
+  </div>
 </footer>
 
 </body>
